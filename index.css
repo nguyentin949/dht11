@@ -1,0 +1,235 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* MÀU NỀN CỦA TRANG - BẠN CÓ THỂ THAY ĐỔI CÁC MÃ MÀU HEX NÀY */
+    background: linear-gradient(135deg, #6a0dad, #4b0082, #a855f7, #1e90ff);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    /* MÀU CHỮ CHUNG CỦA TRANG */
+    color: #f0f0f0;
+    text-align: center;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gift-container {
+    position: relative;
+    cursor: pointer; 
+    perspective: 1000px;
+    transition: transform 0.3s ease-out;
+    text-decoration: none; 
+    display: block; 
+}
+
+.gift-container:hover {
+    transform: scale(1.05);
+}
+
+.gift-image {
+    /* KÍCH THƯỚC ẢNH HỘP QUÀ - CÓ THỂ THAY ĐỔI */
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    /* HIỆU ỨNG BÓNG ĐỔ CỦA ẢNH HỘP QUÀ - CÓ THỂ THAY ĐỔI MÀU HOẶC ĐỘ LỚN */
+    filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.8));
+    transition: transform 0.3s ease-out;
+}
+
+.gift-container:active .gift-image {
+    transform: scale(0.95);
+}
+
+.click-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    /* FONT CHỮ CỦA "Click Me!" - CÓ THỂ THAY ĐỔI (ĐẢM BẢO FONT ĐƯỢC IMPORT Ở HTML) */
+    font-family: 'Dancing Script', cursive;
+    /* KÍCH THƯỚC CHỮ "Click Me!" - CÓ THỂ THAY ĐỔI */
+    font-size: 3.5em;
+    /* MÀU CHỮ "Click Me!" - CÓ THỂ THAY ĐỔI */
+    color: #ffcc00;
+    /* HIỆU ỨNG BÓNG VÀ NHẤP NHÁY CỦA CHỮ "Click Me!" - CÓ THỂ THAY ĐỔI MÀU VÀ ĐỘ LỚN */
+    text-shadow: 0 0 8px rgba(255, 0, 119, 0.7),
+                 0 0 15px rgba(255, 204, 0, 0.5);
+    font-weight: 700;
+    pointer-events: none; 
+    animation: textGlow 2s infinite alternate;
+    white-space: nowrap;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 8px rgba(255, 0, 119, 0.7), 0 0 15px rgba(255, 204, 0, 0.5); }
+    100% { text-shadow: 0 0 12px rgba(255, 0, 119, 1), 0 0 25px rgba(255, 204, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.4); }
+}
+
+.message-intro {
+    /* KÍCH THƯỚC CHỮ DÒNG "Chào bạn! Có một món quà nhỏ..." - CÓ THỂ THAY ĐỔI */
+    font-size: 1.5em;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* CSS cho modal */
+.modal {
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* MÀU NỀN MỜ PHÍA SAU MODAL - CÓ THỂ THAY ĐỔI */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    /* MÀU NỀN CỦA HỘP THOẠI MODAL - CÓ THỂ THAY ĐỔI */
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    /* MÀU CHỮ CỦA NỘI DUNG MODAL - CÓ THỂ THAY ĐỔI */
+    color: #333;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-content h2 {
+    /* MÀU TIÊU ĐỀ "Xác nhận thông tin" - CÓ THỂ THAY ĐỔI */
+    color: #6a0dad;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="date"] { /* Đã thêm input[type="date"] vào đây */
+    width: calc(100% - 20px);
+    padding: 15px;
+    margin: 10px 0;
+    /* MÀU VIỀN CỦA Ô NHẬP LIỆU - CÓ THỂ THAY ĐỔI */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.5em;
+    /* Có thể thêm thuộc tính này để đảm bảo màu chữ */
+    color: #333; 
+}
+.modal-content input[type="date"]::-webkit-calendar-picker-indicator {
+    /* Để tùy chỉnh icon lịch cho trình duyệt webkit (Chrome, Safari) */
+    filter: invert(1); /* Đảo màu icon nếu nền input tối */
+    cursor: pointer;
+}
+
+.modal-content button {
+    /* MÀU NỀN CỦA NÚT "Mở Quà" - CÓ THỂ THAY ĐỔI */
+    background-color: #ffcc00;
+    /* MÀU CHỮ CỦA NÚT "Mở Quà" - CÓ THỂ THAY ĐỔI */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    /* MÀU NỀN CỦA NÚT KHI DI CHUỘT QUA - CÓ THỂ THAY ĐỔI */
+    background-color: #e6b800;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.error-message {
+    /* MÀU CHỮ THÔNG BÁO LỖI - CÓ THỂ THAY ĐỔI */
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gift-image {
+        width: 200px;
+        height: 200px;
+    }
+    .click-text {
+        font-size: 3em;
+    }
+    .message-intro {
+        font-size: 1.2em;
+    }
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gift-image {
+        width: 180px;
+        height: 180px;
+    }
+    .click-text {
+        font-size: 2.5em;
+    }
+    .message-intro {
+        font-size: 1em;
+    }
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+    .modal-content p {
+        font-size: 0.9em;
+    }
+    .modal-content input {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    .modal-content button {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+}

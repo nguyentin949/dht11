@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Món Quà Bất Ngờ! 🎁</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css"> 
+</head>
+<body>
+    <p class="message-intro">Chào bạn! Có một món quà nhỏ đang chờ bạn khám phá...</p>
+    
+    <a href="#" id="giftLink" class="gift-container">
+        <img src="img/gift_icon.png" alt="Gói quà" class="gift-image"> 
+        <span class="click-text">Click Me!</span>
+    </a>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Xác nhận thông tin</h2>
+            <p>Vui lòng nhập thông tin để mở quà:</p>
+            <input type="text" id="fullName" placeholder="Nhập họ và tên của bạn:">
+            <input type="text" id="dob" placeholder="Nhập ngày tháng năm sinh của bạn"> <p id="errorMessage" class="error-message">Thông tin không đúng. Vui lòng thử lại!</p>
+            <button id="submitInfo">Mở Quà</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
